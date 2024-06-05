@@ -39,7 +39,7 @@ const ImgSchema = z.object({
   fileUrl: z.string(),
   url: z.string()
 });
-export const IMG_MAX_LIMIT = 3;
+export const IMG_MAX_LIMIT = 10;
 const formSchema = z.object({
   name: z
     .string()
@@ -52,7 +52,7 @@ const formSchema = z.object({
     .string()
     .min(3, { message: 'Product description must be at least 3 characters' }),
   price: z.coerce.number(),
-  category: z.string().min(1, { message: 'Please select a category' })
+  // category: z.string().min(1, { message: 'Please select a category' })
 });
 
 type ProductFormValues = z.infer<typeof formSchema>;
@@ -84,7 +84,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         description: '',
         price: 0,
         imgUrl: [],
-        category: ''
       };
 
   const form = useForm<ProductFormValues>({
@@ -92,7 +91,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     defaultValues
   });
 
-  const onSubmit = async (data: ProductFormValues) => {
+  const onSubmit = async (data: any) => {
+    console.log('data ==>', data);
+    
     try {
       setLoading(true);
       if (initialData) {
@@ -101,13 +102,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         // const res = await axios.post(`/api/products/create-product`, data);
         // console.log("product", res);
       }
-      router.refresh();
-      router.push(`/dashboard/products`);
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
+      // router.refresh();
+      // router.push(`/dashboard/products`);
+      // toast({
+      //   variant: 'destructive',
+      //   title: 'Uh oh! Something went wrong.',
+      //   description: 'There was a problem with your request.'
+      // });
     } catch (error: any) {
       toast({
         variant: 'destructive',
@@ -226,39 +227,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <Select
-                    disabled={loading}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          defaultValue={field.value}
-                          placeholder="Select a category"
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {/* @ts-ignore  */}
-                      {categories.map((category) => (
-                        <SelectItem key={category._id} value={category._id}>
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
