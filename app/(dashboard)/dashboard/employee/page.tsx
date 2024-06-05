@@ -1,4 +1,3 @@
-'use client';
 
 import Emppage from "../../../../components/Emppage";
 

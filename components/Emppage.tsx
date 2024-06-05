@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import HomePage from './ui/homePage';
 
 const breadcrumbItems = [{ title: 'Employee', link: '/dashboard/employee' }];
 
@@ -29,8 +30,10 @@ export default function Emppage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
     async function fetchData() {
-      const res = await fetch('https://alhazm-dashboard.onrender.com/cars');
+      const res = await fetch(apiUrl || '');
       const result = await res.json();
       setData(result);
     }
@@ -62,14 +65,7 @@ export default function Emppage() {
         </div>
         <Separator />
 
-        <DataTable
-          searchKey="name"
-          // pageNo={1}
-          columns={columns}
-          // totalUsers={1000}
-          data={data as any}
-          // pageCount={1}
-        />
+        <HomePage data={data} />
       </div>
     </>
   );
