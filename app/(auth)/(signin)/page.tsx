@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
   title: 'Al-hazam car rental',
   description: 'Al-hazam car rental', 
   icons: {
-    icon: './logo.jpg'
+    icon: 'https://alhazmcarrental.vercel.app/images/logo.jpg'
   }
 };
 
