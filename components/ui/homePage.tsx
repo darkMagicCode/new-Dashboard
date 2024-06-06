@@ -95,7 +95,7 @@ export default function HomePage({ data , loading }: any) {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="dark:bg-black-400 rounded-md bg-white p-3 text-white"
+              className="dark:bg-black-400 rounded-md bg-white p-3 text-black"
             >
               <DropdownMenuLabel className="mb-2">Actions</DropdownMenuLabel>
               <div className="flex flex-col gap-1">
