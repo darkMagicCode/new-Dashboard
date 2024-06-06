@@ -6,7 +6,10 @@ import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Authentication',
-  description: 'Authentication forms built using the components.'
+  description: 'Authentication forms built using the components.',
+  icons: {
+    icon: './logo.jpg'
+  }
 };
 
 export default function AuthenticationPage() {
