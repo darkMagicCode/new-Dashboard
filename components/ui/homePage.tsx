@@ -94,6 +94,7 @@ export default function HomePage({ data , loading }: any) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
+            style={{ zIndex: 9999 }}
               align="end"
               className="dark:bg-black-400 rounded-md bg-white p-3 text-black"
             >
