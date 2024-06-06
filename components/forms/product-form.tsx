@@ -48,7 +48,7 @@ interface ProductFormProps {
   initialData: any | null;
 }
 
-export const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
+export const ProductForm: React.FC<any> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
   const { toast } = useToast();
