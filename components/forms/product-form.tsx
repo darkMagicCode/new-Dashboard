@@ -172,7 +172,7 @@ export const ProductForm: React.FC<any> = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      fetch(`${apiUrl}/${params.carId}`, {
+     await fetch(`${apiUrl}/${params.carId}`, {
         method: 'DELETE'
         // headers: {
         //   'Content-Type': 'application/json'
