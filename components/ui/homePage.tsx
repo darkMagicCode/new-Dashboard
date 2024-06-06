@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 import ImageFallback from './ImageFallback';
 import { Avatar, Image } from '@radix-ui/react-avatar';
 
-export default function HomePage({ data }: any) {
+export default function HomePage({ data , loading }: any) {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState<any>('name');
   const [minPrice, setMinPrice] = useState(0);
@@ -103,18 +103,18 @@ export default function HomePage({ data }: any) {
                   variant={'outline'}
                   className="mb-3"
                   onClick={() =>
-                    router.push(`/dashboard/employee/${row.original._id}`)
+                    router.push(`/dashboard/cars/${row.original._id}`)
                   }
                 >
                   Edit
                 </Button>
-                <Button
+                {/* <Button
                   variant={'outline'}
                   className=""
                   onClick={() => handleAddToCart(row.original)}
                 >
                   Delete
-                </Button>
+                </Button> */}
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -129,7 +129,7 @@ export default function HomePage({ data }: any) {
   return (
     <div className="lg:grid-cols-full grid grid-cols-1 gap-4 px-2 md:px-10">
       <div className="sm:col-span-1 lg:col-span-3">
-        <DynamicTable data={data} columns={columns} onAction={handleAction} />
+        <DynamicTable data={data} columns={columns} loading={loading} onAction={handleAction} />
       </div>
     </div>
   );

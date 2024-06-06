@@ -6,8 +6,8 @@ import { Avatar, Image } from '@radix-ui/react-avatar';
 const ImageUpload = ({
   setImages,
   images,
-  imgFiles,
-  setImgFiles,
+  // imgFiles,
+  // setImgFiles,
   ...rest
 }: any) => {
   const handleImageUpload = (event: any) => {
@@ -20,16 +20,18 @@ const ImageUpload = ({
       reader.onloadend = () => {
         const base64String = reader.result;
         setImages((prevImages: any) => [...prevImages, base64String]);
-        setImgFiles((prevFiles: any) => [...prevFiles, file]);
+        // setImgFiles((prevFiles: any) => [...prevFiles, file]);
       };
       reader.readAsDataURL(file);
     });
   };
   console.log('images', images);
 
-  const removeImage = (index: any) => {
+  const removeImage = (index: any, e: any) => {
+    // e.stopPropagation();
+    // debugger;
     setImages(images.filter((_: any, i: any) => i !== index));
-    setImgFiles(imgFiles.filter((_: any, i: any) => i !== index));
+    // setImgFiles(imgFiles.filter((_: any, i: any) => i !== index));
   };
 
   return (
@@ -62,7 +64,7 @@ const ImageUpload = ({
             </Avatar>
 
             <button
-              onClick={() => removeImage(index)}
+              onClick={(e) => removeImage(index, e)}
               className="absolute right-2 top-2 rounded-full bg-red-600 p-1 text-white opacity-100 transition-opacity duration-300 group-hover:opacity-100"
             >
               &times;

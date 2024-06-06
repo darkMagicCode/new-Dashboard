@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import HomePage from './ui/homePage';
 
-const breadcrumbItems = [{ title: 'Employee', link: '/dashboard/employee' }];
+const breadcrumbItems = [{ title: 'cars', link: '/dashboard/cars' }];
 
 type paramsProps = {
   searchParams: {
@@ -28,14 +28,17 @@ export default function Emppage() {
   // const offset = (page - 1) * pageLimit;
 
   const [data, setData] = useState([]);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     async function fetchData() {
+      setloading(true)
       const res = await fetch(apiUrl || '');
       const result = await res.json();
       setData(result);
+      setloading(false)
     }
 
     fetchData();
@@ -52,12 +55,12 @@ export default function Emppage() {
 
         <div className="flex items-start justify-between">
           <Heading
-            title={`Employee ($})`}
-            description="Manage employees (Server side table functionalities.)"
+            title={`Cars (${data?.length})`}
+            description="Manage Cars"
           />
 
           <Link
-            href={'/dashboard/employee/new'}
+            href={'/dashboard/cars/new'}
             className={cn(buttonVariants({ variant: 'default' }))}
           >
             <Plus className="mr-2 h-4 w-4" /> Add New
@@ -65,7 +68,7 @@ export default function Emppage() {
         </div>
         <Separator />
 
-        <HomePage data={data} />
+        <HomePage data={data} loading={loading} />
       </div>
     </>
   );
