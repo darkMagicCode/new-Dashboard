@@ -4,7 +4,7 @@ import UserAuthForm from '@/components/forms/user-auth-form';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
- const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'Al-hazam car rental',
   description: 'Al-hazam car rental', 
   icons: {
