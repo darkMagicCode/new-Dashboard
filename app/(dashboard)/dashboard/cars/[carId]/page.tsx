@@ -8,7 +8,7 @@ export default function Page() {
     { title: 'Create', link: '/dashboard/cars/create' }
   ];
   return (
-    <div className="flex-1 space-y-4 p-8">
+    <div className="">
       <BreadCrumb items={breadcrumbItems} />
       <ProductForm
      
